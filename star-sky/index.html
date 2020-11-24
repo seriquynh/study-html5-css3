@@ -15,21 +15,52 @@
 
             to {
                 top: 100%;
+                display: none;
             }
         }
 
-        #my-star {
+        .star {
             animation-name: example;
             animation-duration: 4s;
-            animation-iteration-count: infinite;
+            /* animation-iteration-count: infinite; */
         }
     </style>
 </head>
 
 <body>
-    <div class="h-screen bg-black relative overflow-hidden">
-        <div id='my-star' class="inline-block absolute top-0 text-2xl">⭐</div>
+    <div id='sky' class="h-screen bg-black relative overflow-hidden">
+        <div class="star inline-block absolute top-0 text-2xl">⭐</div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+    <script>
+        function getFontSizeClassName() {
+            const value = _.random(0, 2);
+            if (value === 0) {
+                return 'text-xl';
+            } else if (value === 1) {
+                return 'text-2xl';
+            } else if (value === 2) {
+                return 'text-3xl';
+            }
+        }
+
+        function createStar() {
+            const star = document.createElement('div');
+            star.innerText = '⭐';
+            star.className = 'star inline-block absolute ' + getFontSizeClassName();
+            star.style.top = `${_.random(0, 300)}px`;
+            star.style.left = `${_.random(0, 100)}%`;
+            return star;
+        }
+        setInterval(() => {
+            document.getElementById('sky').appendChild(createStar());
+            document.getElementById('sky').appendChild(createStar());
+            document.getElementById('sky').appendChild(createStar());
+            document.getElementById('sky').appendChild(createStar());
+            document.getElementById('sky').appendChild(createStar());
+        }, 300);
+    </script>
 </body>
 
 </html>
