@@ -14,8 +14,7 @@
             }
 
             to {
-                top: 100%;
-                display: none;
+                top: 105%;
             }
         }
 
@@ -44,7 +43,6 @@
                 return 'text-3xl';
             }
         }
-
         function createStar() {
             const star = document.createElement('div');
             star.innerText = '⭐';
@@ -60,6 +58,15 @@
             document.getElementById('sky').appendChild(createStar());
             document.getElementById('sky').appendChild(createStar());
         }, 300);
+        setInterval(() => {
+            const stars = document.getElementsByClassName('star');
+            for (const star of stars) {
+                const height = parseInt(star.style.top.replace('px', ''));
+                if (height <= 300) {
+                    star.remove();
+                }
+            }
+        }, 6000);
     </script>
 </body>
 
